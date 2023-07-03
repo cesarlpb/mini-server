@@ -1,0 +1,57 @@
+~()$: ab -n 1000 -c 1 https://79.143.92.203:3000/ 
+
+This is ApacheBench, Version 2.3 <$Revision: 1901567 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 79.143.92.203 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:        
+Server Hostname:        79.143.92.203
+Server Port:            3000
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        ECDH X25519 253 bits
+
+Document Path:          /
+Document Length:        13 bytes
+
+Concurrency Level:      1
+Time taken for tests:   73.800 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      212000 bytes
+HTML transferred:       13000 bytes
+Requests per second:    13.55 [#/sec] (mean)
+Time per request:       73.800 [ms] (mean)
+Time per request:       73.800 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       49   57   8.1     55     136
+Processing:    14   17   4.0     16      51
+Waiting:       14   16   4.0     15      51
+Total:         64   74   9.2     71     156
+
+Percentage of the requests served within a certain time (ms)
+  50%     71
+  66%     72
+  75%     74
+  80%     75
+  90%     86
+  95%     97
+  98%    103
+  99%    107
+ 100%    156 (longest request)

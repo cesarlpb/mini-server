@@ -1,0 +1,56 @@
+root@lcdt:~#  ab -n 1000 -c 1000 https://79.143.92.203:3000/
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 79.143.92.203 (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Completed 400 requests
+Completed 500 requests
+Completed 600 requests
+Completed 700 requests
+Completed 800 requests
+Completed 900 requests
+Completed 1000 requests
+Finished 1000 requests
+
+
+Server Software:        
+Server Hostname:        79.143.92.203
+Server Port:            3000
+SSL/TLS Protocol:       TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+Server Temp Key:        X25519 253 bits
+
+Document Path:          /
+Document Length:        13 bytes
+
+Concurrency Level:      1000
+Time taken for tests:   5.450 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      212000 bytes
+HTML transferred:       13000 bytes
+Requests per second:    183.48 [#/sec] (mean)
+Time per request:       5450.078 [ms] (mean)
+Time per request:       5.450 [ms] (mean, across all concurrent requests)
+Transfer rate:          37.99 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       14 2121 128.7   2123    2328
+Processing:    79 3166 122.8   3173    3283
+Waiting:       17 1656 680.1   1662    2839
+Total:         93 5287 168.4   5296    5360
+
+Percentage of the requests served within a certain time (ms)
+  50%   5296
+  66%   5309
+  75%   5315
+  80%   5323
+  90%   5344
+  95%   5355
+  98%   5356
+  99%   5358
+ 100%   5360 (longest request)

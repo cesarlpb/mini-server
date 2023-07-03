@@ -1,0 +1,17 @@
+root@lcdt:~# ab -n 10000 -c 1750 https://79.143.92.203:3000/
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 79.143.92.203 (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+apr_pollset_poll: The timeout specified has expired (70007)
+Total of 9999 requests completed

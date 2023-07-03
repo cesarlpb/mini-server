@@ -1,0 +1,144 @@
+    1  df -H
+    2  ls
+    3  cd /home/
+    4  ls
+    5  mkdir node
+    6  ls
+    7  cd node
+    8  touch server.js
+    9  npm init -y
+   10  sudo apt update
+   11  sudo apt upgrade
+   12  node -v
+   13  sudo apt install nodejs
+   14  node -v
+   15  df -H
+   16  curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+   17  source ~/.profile 
+   18  nvm -v
+   19  nvm install 18
+   20  node -v
+   21  df -H
+   22  ls
+   23  npm init -y
+   24  npm install mysql
+   25  npm install dotenv
+   26  npm install -g npm@9.7.2 
+   27  df -H
+   28  ls
+   29  code server.js 
+   30  touch .env
+   31  code .env 
+   32  ls
+   33  cd /home/
+   34  ls
+   35  cd node
+   36  ls
+   37  node server.js 
+   38  openssl
+   39  mkdir .keys
+   40  cd .keys/
+   41  openssl genrsa -out private.key 2048
+   42  ls
+   43  openssl req -new -key private.key -out certificate.csr
+   44  ls
+   45  openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
+   46  ls
+   47  openssl rsa -passin pass:x -in server.pass.key -out server.key
+   48  rm server.pass.key
+   49  ls
+   50  openssl x509 -req -days 365 -in certificate.csr -signkey server.key -out server.crt
+   51  ls
+   52  cat server.crt 
+   53  cd ..
+   54  node server.js 
+   55  npm install mysql2
+   56  node server.js 
+   57  cd .keys/
+   58  ls
+   59  cd ..
+   60  node server.js 
+   61  cd /home/
+   62  ls
+   63  cd node
+   64  npm install -g pm2
+   65  code server.js 
+   66  cp server.js server.bak
+   67  ls
+   68  pm2 start server.js --name server 3000 --env production --watch
+   69  pm2 start server.js --name "server 3000" --env production --watch
+   70  pm2 delete 0
+   71  pm2 log 1
+   72  ls
+   73  code package.json 
+   74  pm2 restart 1
+   75  pm2 log 1
+   76  npm install express
+   77  df -H
+   78  pm2 restart 1
+   79  pm2 log 1
+   80  cp server.js server2.bak
+   81  code server2.bak 
+   82  cd .keys/
+   83  ls
+   84  pm2 restart 1
+   85  pm2 log 1
+   86  cd ..
+   87  ls
+   88  mkdir benchmarks
+   89  cd benchmarks/
+   90  1000x1.txt
+   91  code 1000x1.txt
+   92  pm2 log 1
+   93  ls
+   94  code 1000x10.txt
+   95  code 1000x100.txt
+   96  code 1000x250.txt
+   97  code 1000x1000.txt
+   98  ls
+   99  cd benchmarks/
+  100  code 10k_x_2k-ratelimit.txt
+  101  cd ..
+  102  npm uninstall mysql2
+  103  df -H
+  104  cd -
+  105  code 10k_x_1.750k-ratelimit.txt
+  106  code 10k_x_1.5k-ratelimit.txt
+  107  code summary.md
+  108  cd ..
+  109  history > history.txt
+  110  code history.txt 
+  111  pm2 save
+  112  ls
+  113  htop
+  114  code 10000x2000.txt
+  115  cd /home/node/
+  116  cd benchmarks/
+  117  code 10000x2000.txt
+  118  pm2 log 1
+  119  pm2 ls
+  120  history
+  121  cd ..
+  122  ls
+  123  pm2 start server.js --name "server 3000" --env production --watch
+  124  pm2 log 1
+  125  pm2 ls
+  126  pm2 log 0
+  127  npm i express-rate-limit
+  128  pm2 restart 0
+  129  pm2 log 0
+  130  cd /home/
+  131  ls
+  132  git clone git@github.com:cesarlpb/mini-server.git
+  133  ssh-keygen
+  134  cat /root/.ssh/id_rsa.pub
+  135  git clone git@github.com:cesarlpb/mini-server.git
+  136  ls
+  137  cp -R node/ mini-server/
+  138  cd mini-server/
+  139  ls
+  140  code .
+  141  history
+  142  ls
+  143  cd node
+  144  history > history.txt 

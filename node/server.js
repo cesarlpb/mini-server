@@ -27,7 +27,33 @@ const httpsServer = https.createServer(credentials, app);
 app.get('/', (req, res) => {
   let unixTime = new Date().getTime()
   console.log("GET request at " + unixTime)
-  res.send('Hello, HTTPS!');
+  res.send('Welcome to my api!');
+});
+
+const tweets = [
+  {
+    "id": 1,
+    "content": "Esto es un tweet de prueba 1 desde Node",
+    "author": "César",
+    "created_on": "04-07-2023"
+  },
+  {
+    "id": 2,
+    "content": "Esto es un tweet de prueba 2 desde Node",
+    "author": "César", 
+    "created_on": "04-07-2023"
+  },
+  {
+    "id": 3,
+    "content": "Esto es un tweet de prueba 3 desde Node",
+    "author": "César",
+    "created_on": "04-07-2023"
+  }
+]
+app.get('/api/tweets', (req, res) => {
+  let unixTime = new Date().getTime()
+  console.log("GET request to /api/tweets at " + unixTime)
+  res.send(tweets);
 });
 
 // Inicia el servidor HTTPS

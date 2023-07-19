@@ -1,5 +1,29 @@
 # CRUD 
 
+## Leer datos: SELECT 
+
+`SELECT * FROM posts;` 
+```javascript
+  Post.findAll().then(res => {
+    console.log(res) // console.log de todos los objetos Post de Sequelize
+    // Filtrando por campos (solo las columnas solicitadas):
+    // res.map(post => console.log(post.dataValues))
+}).catch((error) => {
+    console.error('No se encontraron los datos: ', error);
+});
+```
+
+`SELECT title FROM posts;` 
+```javascript
+  Post.findAll({attributes: ['title']}).then(res => {
+    console.log(res) // console.log de todos los objetos Post de Sequelize
+    // Filtrando por campos (solo las columnas solicitadas):
+    // res.map(post => console.log(post.dataValues))
+}).catch((error) => {
+    console.error('No se encontraron los datos: ', error);
+});
+```
+
 ## Crear 1 Post
 ```javascript
 const nuevoPost = {

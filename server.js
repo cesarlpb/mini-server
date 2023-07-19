@@ -135,6 +135,15 @@ const sections = [
 
 sequelize.sync().then(() => {
 
+  Post.findOne({
+    where: {
+        id : "50"
+    }
+  }).then(res => {
+      console.log(res?.dataValues)
+  }).catch((error) => {
+      console.error('No se encontró el registro: ', error);
+  });
   
 }).catch((error) => {
   console.error('Hubo un error: ', error);

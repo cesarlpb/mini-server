@@ -24,6 +24,21 @@
 });
 ```
 
+Encontrar un registro por id:
+```javascript
+  Post.findOne({
+    where: {
+        id : "1"
+    }
+  }).then(res => {
+      console.log(res?.dataValues)
+  }).catch((error) => {
+      console.error('No se encontró el registro: ', error);
+  });
+```
+
+**Observación:** Si el id no existe no arroja error, el response saldría `undefined`.
+
 ## Crear 1 Post
 ```javascript
 const nuevoPost = {

@@ -29,6 +29,13 @@ const Post = sequelize.define("posts", {
   }
 });
 
+// Post de ejemplo
+const nuevoPost = {
+  title: "Viajes a mitad de precio", 
+  subtitle: "Aprende como ahorrar dinero este verano", 
+  img: "playa.jpg", 
+  sectionId: 1}
+
 const Section = sequelize.define("sections", {
    section: {
      type: DataTypes.STRING(100),
@@ -41,14 +48,18 @@ const Section = sequelize.define("sections", {
    }
 });
 
-// sequelize.authenticate().then(() => {
-//   console.log('Hemos conectado a la base de datos.');
-// }).catch((error) => {
-//   console.error('Ha habido un error: ', error);
-// });
+// Section de ejemplo
+const nuevaSection = {
+  section: "Viajes exprés en el Conte Inglés",
+  order: 1
+}
+console.log(nuevaSection)
 
 sequelize.sync().then(() => {
-  console.log('Tablas creadas');
+  // console.log('Tablas creadas');
+  // Insertamos datos:
+  Post.create(nuevoPost)
+  Section.create(nuevaSection)
 }).catch((error) => {
   console.error('Hubo un error: ', error);
 });

@@ -60,6 +60,19 @@ Se pasa un array a bulkCreate.
   Post.bulkCreate(posts)
 // ...
 ```
+
+## Editar un Post o varios
+
+Se puede editar uno o varios cambiando la condición del `where`.
+
+```javascript
+  Post.update({ title: "Viaje a Roma editado"}, {
+    where: {
+      id: 1
+    }
+  })
+```
+
 ## Borrar Post
 
 Borrado por id:

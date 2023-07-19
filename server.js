@@ -134,12 +134,8 @@ const sections = [
 
 
 sequelize.sync().then(() => {
-  // console.log('Tablas creadas');
-  // Insertamos datos:
-  
-  // Post.bulkCreate(sections)
-  // Section.bulkCreate(sections)
 
+  
 }).catch((error) => {
   console.error('Hubo un error: ', error);
 });

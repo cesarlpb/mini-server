@@ -3,6 +3,7 @@
 Servidor de Node para el [blog de React](https://github.com/cesarlpb/learn-react/tree/blog)
 
 ## How to Sequelize
+![meme](meme.jpg)
 
 https://www.digitalocean.com/community/tutorials/how-to-use-sequelize-with-node-js-and-mysql
 

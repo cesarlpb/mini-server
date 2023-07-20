@@ -45,12 +45,14 @@ app.get('/posts/:id', (req, res) => {
     }
   )
 })
-
+// POST para crear nuevo post
 app.post('/posts', (req, res) => {
-  let nuevoPost = req.body 
-  // posts.push(nuevoPost)
-  // Post.create(nuevoPost) ...
-  res.status(201).json("nuevoPost")
+  let nuevoPost = req.body
+  // IDEA: colocar validaciones del objeto...
+  Post.create(nuevoPost).then(post => {
+    console.log(post)
+    res.status(201).json(post)
+  })
 });
 
 const PORT = 3000

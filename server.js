@@ -1,6 +1,6 @@
 require('dotenv').config()
 // const { Op, Sequelize, DataTypes } = require("sequelize");
-const { sequelize, sincronizarTablas, Post } = require('./tables')
+const { sequelize, sincronizarTablas, Post, Section } = require('./tables')
 
 // Aplicación de express
 const express = require('express');
@@ -80,7 +80,16 @@ app.delete('/posts/:id', (req, res) => {
     res.json({"mensaje": `El post con id ${id} ha sido borrado`})
   })
 })
-// TODO: lo mismo para sections :)
+// Section
+// GET de lista de sections
+app.get('/sections', (req, res) => {
+  Section.findAll().then(sections => {
+    sections.map(section => console.log(section.dataValues))
+    res.json(sections)
+  })
+})
+// GET de un post por id
+
 const PORT = 3000
 app.listen(PORT, () => {
   console.log("Servidor en ejecución en http://localhost:" + PORT)}

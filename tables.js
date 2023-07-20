@@ -55,4 +55,4 @@ const sincronizarTablas = () => {
   });
 }
 
-module.exports = { sequelize, sincronizarTablas, Post };
+module.exports = { sequelize, sincronizarTablas, Post, Section };

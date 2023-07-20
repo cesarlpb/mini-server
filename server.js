@@ -80,7 +80,7 @@ app.delete('/posts/:id', (req, res) => {
     res.json({"mensaje": `El post con id ${id} ha sido borrado`})
   })
 })
-
+// TODO: lo mismo para sections :)
 const PORT = 3000
 app.listen(PORT, () => {
   console.log("Servidor en ejecución en http://localhost:" + PORT)}

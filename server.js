@@ -100,6 +100,15 @@ app.get('/sections/:id', (req, res) => {
     section ? res.json(section) : res.json({"mensaje": "Ese id no es válido"})
   })
 })
+// POST para crear nueva section
+app.post('/sections', (req, res) => {
+  const newSection = req.body;
+  Section.create(newSection).then(data => {
+    console.log(data);
+    res.status(201).json({"mensaje": `Se ha creado la sección.`})
+  })
+})
+
 const PORT = 3000
 app.listen(PORT, () => {
   console.log("Servidor en ejecución en http://localhost:" + PORT)}

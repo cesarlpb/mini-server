@@ -108,6 +108,20 @@ app.post('/sections', (req, res) => {
     res.status(201).json({"mensaje": `Se ha creado la sección.`})
   })
 })
+// Endpoint UPDATE para editar section
+app.patch('/sections/:id', (req, res) => {
+  const id = req.params.id;
+  const datos = req.body; 
+  Section.update(datos, {
+    where: {
+      id: id
+    }
+  }).then(data => {
+    console.log(data);
+    res.json({"mensaje": `La sección con id ${id} se ha actualizado con: ` + JSON.stringify(datos)})
+  })
+})
+// Endpoint DELETE para borrar section
 
 const PORT = 3000
 app.listen(PORT, () => {

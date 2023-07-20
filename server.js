@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 });
 
 // Post
+// GET de lista de posts
 app.get('/posts', (req, res) => {
   Post.findAll().then(posts => {
     // Este console.log es p  ara ver los datos en consola (dataValues):
@@ -28,6 +29,20 @@ app.get('/posts', (req, res) => {
     res.json(posts)
   })
 });
+// GET de un post por id
+app.get('/posts/:id', (req, res) => {
+  const id = req.params.id; // leemos el id de la url
+  Post.findOne({
+    where: {
+      id: id
+    }
+  }).then( 
+    post => {
+      console.log(post);
+      res.json(post)
+    }
+  )
+})
 
 app.post('/posts', (req, res) => {
   let nuevoPost = req.body 

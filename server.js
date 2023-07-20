@@ -54,6 +54,18 @@ app.post('/posts', (req, res) => {
     res.status(201).json(post)
   })
 });
+// Endpoint DELETE para borrar post
+app.delete('/posts/:id', (req, res) => {
+  const id = req.params.id;
+  Post.destroy({
+    where: {
+      id: id
+    }
+  }).then(data => {
+    console.log(data);
+    res.json({"mensaje": `El post con id ${id} ha sido borrado`})
+  })
+})
 
 const PORT = 3000
 app.listen(PORT, () => {

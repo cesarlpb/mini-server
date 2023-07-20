@@ -39,7 +39,9 @@ app.get('/posts/:id', (req, res) => {
   }).then( 
     post => {
       console.log(post);
-      res.json(post)
+      // Opciones para el response:
+      res.json(post ? post : {})
+      // post ? res.json(post) : res.end("El id no es válido")
     }
   )
 })

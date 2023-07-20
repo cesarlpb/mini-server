@@ -122,7 +122,18 @@ app.patch('/sections/:id', (req, res) => {
   })
 })
 // Endpoint DELETE para borrar section
-
+app.delete('/sections/:id', (req, res) => {
+  const id = req.params.id;
+  Section.destroy({
+    truncate: true,
+    where: {
+      id: id
+    }
+  }).then(data => {
+    console.log(data);
+    res.json({"mensaje": "Se ha eliminado la sección"})
+  })
+})
 const PORT = 3000
 app.listen(PORT, () => {
   console.log("Servidor en ejecución en http://localhost:" + PORT)}

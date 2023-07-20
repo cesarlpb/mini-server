@@ -45,10 +45,11 @@ const Section = sequelize.define("sections", {
 });
 // Función que sincroniza las tablas
 const sincronizarTablas = () => {
-  sequelize.sync({force: false}).then(() => {
+  sequelize.sync().then(() => {
     // IDEA: if que verifica si las tablas existen o si tienen datos...
-    // Post.bulkCreate(posts)
-    // Section.bulkCreate(sections)
+    // sequelize.truncate() // CHECK -> se queda pescando
+    // Post.bulkCreate(posts.posts) // Resolver ._.
+    // Section.bulkCreate(sections.sections)
     console.log("Tablas actualizadas")
   }).catch((error) => {
     console.error('Hubo un error: ', error);

@@ -8,7 +8,7 @@ const app = express()
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-const cors = require('cors') 
+const cors = require('cors'); 
 app.use(cors()) 
 
 // Llamada a la fn para actualizar tablas en base de datos (descomentar para sincronizar):
@@ -89,7 +89,17 @@ app.get('/sections', (req, res) => {
   })
 })
 // GET de un post por id
-
+app.get('/sections/:id', (req, res) => {
+  const id = req.params.id;
+  Section.findOne({
+    where: {
+      id: id
+    }
+  }).then(section => {
+    console.log(section);
+    section ? res.json(section) : res.json({"mensaje": "Ese id no es válido"})
+  })
+})
 const PORT = 3000
 app.listen(PORT, () => {
   console.log("Servidor en ejecución en http://localhost:" + PORT)}

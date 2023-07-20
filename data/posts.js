@@ -1,4 +1,4 @@
-export const posts = [
+const posts = [
   {
     title: "Viaje a Roma",
     subtitle: "Pizzas al mejor precio",
@@ -66,3 +66,5 @@ export const posts = [
     sectionId: 3
   }
 ]
+
+module.exports = { posts }

@@ -1,4 +1,4 @@
-export const sections = [
+const sections = [
   {
     section: "Últimos Posts",
     order: 1
@@ -16,3 +16,5 @@ export const sections = [
     order: 4
   }
 ]
+
+module.exports = { sections }

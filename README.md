@@ -8,7 +8,7 @@ Servidor de Node para el [blog de React](https://github.com/cesarlpb/learn-react
 https://www.digitalocean.com/community/tutorials/how-to-use-sequelize-with-node-js-and-mysql
 
 ## Entra si quieres jugar:
-._.
+https://prod.liveshare.vsengsaas.visualstudio.com/join?F10512DDA7D2C72963EEE5A20A74BB3F6671
 
 ## Pasos
 

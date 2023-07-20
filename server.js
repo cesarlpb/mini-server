@@ -1,6 +1,6 @@
 require('dotenv').config()
 // const { Op, Sequelize, DataTypes } = require("sequelize");
-const { sequelize, sincronizarTablas } = require('./tables')
+const { sequelize, sincronizarTablas, Post } = require('./tables')
 
 // Aplicación de express
 const express = require('express');
@@ -11,10 +11,9 @@ app.use(bodyParser.json())
 const cors = require('cors') 
 app.use(cors()) 
 
-// Llamada a la fn para actualizar tablas en base de datos:
+// Llamada a la fn para actualizar tablas en base de datos (descomentar para sincronizar):
 // sincronizarTablas()
 
-// Sincroniza las tablas en la base de datos
 app.get('/', (req, res) => {
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('Bienvenido a Express');
@@ -22,9 +21,12 @@ app.get('/', (req, res) => {
 
 // Post
 app.get('/posts', (req, res) => {
-  // Post.findAll() ...
-  console.log("posts en consola")
-  res.json("posts")
+  Post.findAll().then(posts => {
+    // Este console.log es p  ara ver los datos en consola (dataValues):
+    posts.map(post => console.log(post.dataValues))
+    // Response del endpoint:
+    res.json(posts)
+  })
 });
 
 app.post('/posts', (req, res) => {

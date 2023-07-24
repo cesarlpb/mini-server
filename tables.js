@@ -22,6 +22,10 @@ const Post = sequelize.define("posts", {
     type: DataTypes.STRING(150),
     allowNull: true
   },
+  content: {
+    type: DataTypes.STRING(3000),
+    allowNull: false
+  },
   img: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -33,7 +37,8 @@ const Post = sequelize.define("posts", {
   },
   sectionId: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false, 
+    defaultValue: 1
   }
 });
 // Definición de tabla "sections"

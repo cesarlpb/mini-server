@@ -1,5 +1,7 @@
+const fs = require('fs');
+const path = require('path');
+
 require('dotenv').config()
-// const { Op, Sequelize, DataTypes } = require("sequelize");
 const { sequelize, sincronizarTablas, Post, Section } = require('./tables')
 
 // Aplicación de express
@@ -134,6 +136,39 @@ app.delete('/sections/:id', (req, res) => {
     res.json({"mensaje": "Se ha eliminado la sección"})
   })
 })
+
+// ----- Subida de imágenes -----
+// Carpeta media en la misma ubicación que server.js
+const mediaPath = path.join(__dirname, 'media');
+// Crear directorio media si no existe
+if(!fs.existsSync(mediaPath)){
+  fs.mkdirSync(mediaPath)
+}
+// Endpoint para subir archivo de imagen
+
+const multer  = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'media/')
+  },
+  filename: function (req, file, cb) {
+    // Podemos aplicar lógica para editar el nombre de archivo que guardamos
+    cb(null, file.originalname) 
+  }
+})
+const upload = multer({ storage: storage});
+
+app.post('/upload', upload.single('file'), function(req, res) {
+  const title = req.body.title;
+  const file = req.file;
+
+  console.log(title);
+  console.log(file);
+
+  res.status(201).json({
+    'mensaje': 'Se ha subido el archivo: ' + file.filename
+  });
+});
 const PORT = 3000
 app.listen(PORT, () => {
   console.log("Servidor en ejecución en http://localhost:" + PORT)}

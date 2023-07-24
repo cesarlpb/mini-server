@@ -26,6 +26,11 @@ const Post = sequelize.define("posts", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  authorId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 1
+  },
   sectionId: {
     type: DataTypes.INTEGER,
     allowNull: false
@@ -43,13 +48,38 @@ const Section = sequelize.define("sections", {
     defaultValue: 0
    }
 });
+
+const Author = sequelize.define("authors", {
+  fullName: {
+    type: DataTypes.STRING(100),
+    allowNull: false
+  },
+  description: {
+    type: DataTypes.STRING(300),
+    allowNull: false
+  },
+  username: {
+    type: DataTypes.STRING(30),
+    allowNull: false
+  },
+  profilePicture: {
+    type: DataTypes.STRING(),
+    allowNull: true
+  }
+})
 // Función que sincroniza las tablas
 const sincronizarTablas = () => {
-  sequelize.sync().then(() => {
+  sequelize.sync({force: true}).then(() => {
     // IDEA: if que verifica si las tablas existen o si tienen datos...
-    // sequelize.truncate() // CHECK -> se queda pescando
-    // Post.bulkCreate(posts.posts) // Resolver ._.
-    // Section.bulkCreate(sections.sections)
+    Author.create({
+      fullName: "Pepe Le Rana",
+      description: "Croac croac!",
+      username: "pepe-le-rana",
+      profilePicture: "https://ichef.bbci.co.uk/news/800/cpsprodpb/93B3/production/_91411873_14370347_1655937074697157_8607714744240888925_n.png"
+    })
+    sequelize.truncate() // CHECK -> se queda pescando
+    Post.bulkCreate(posts.posts) // Resolver ._.
+    Section.bulkCreate(sections.sections)
     console.log("Tablas actualizadas")
   }).catch((error) => {
     console.error('Hubo un error: ', error);

@@ -12,7 +12,7 @@ const sequelize = new Sequelize(
    }
 );
 
-// Definición de tabla posts
+// Definición de tabla "posts"
 const Post = sequelize.define("posts", {
   title: {
     type: DataTypes.STRING(75),
@@ -36,7 +36,7 @@ const Post = sequelize.define("posts", {
     allowNull: false
   }
 });
-// Definición de tabla sections
+// Definición de tabla "sections"
 const Section = sequelize.define("sections", {
    section: {
      type: DataTypes.STRING(100),
@@ -48,13 +48,13 @@ const Section = sequelize.define("sections", {
     defaultValue: 0
    }
 });
-
-const Author = sequelize.define("authors", {
+// Definición de tabla "users"
+const User = sequelize.define("users", {
   fullName: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
-  description: {
+  bio: {
     type: DataTypes.STRING(300),
     allowNull: false
   },
@@ -62,19 +62,26 @@ const Author = sequelize.define("authors", {
     type: DataTypes.STRING(30),
     allowNull: false
   },
+  rol: {
+    type: DataTypes.STRING(20),
+    allowNull: false,
+    defaultValue: "user"
+  },
   profilePicture: {
     type: DataTypes.STRING(),
     allowNull: true
   }
 })
+
 // Función que sincroniza las tablas
 const sincronizarTablas = () => {
   sequelize.sync({force: true}).then(() => {
     // IDEA: if que verifica si las tablas existen o si tienen datos...
-    Author.create({
+    User.create({
       fullName: "Pepe Le Rana",
-      description: "Croac croac!",
+      bio: "Croac croac!",
       username: "pepe-le-rana",
+      rol: "author", // user < author < admin
       profilePicture: "https://ichef.bbci.co.uk/news/800/cpsprodpb/93B3/production/_91411873_14370347_1655937074697157_8607714744240888925_n.png"
     })
     sequelize.truncate() // CHECK -> se queda pescando

@@ -24,7 +24,7 @@ const Post = sequelize.define("posts", {
   },
   content: {
     type: DataTypes.STRING(3000),
-    allowNull: false
+    allowNull: true
   },
   img: {
     type: DataTypes.STRING,

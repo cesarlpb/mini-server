@@ -37,7 +37,7 @@ const cors = require('cors');
 app.use(cors()) 
 
 // Llamada a la fn para actualizar tablas en base de datos (descomentar para sincronizar):
-// sincronizarTablas()
+sincronizarTablas()
 
 app.get('/', (req, res) => {
   res.writeHead(200, {'Content-Type': 'text/plain'});

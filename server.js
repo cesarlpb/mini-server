@@ -26,9 +26,13 @@ const { sequelize, sincronizarTablas, Post, Section } = require('./tables')
 // Aplicación de express
 const express = require('express');
 const app = express()
+
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+// app.use(express.static('media'));
+
 const cors = require('cors'); 
 app.use(cors()) 
 
@@ -70,29 +74,9 @@ app.get('/posts/:id', (req, res) => {
 app.post('/posts', (req, res) => {
   let nuevoPost = req.body 
   console.log("body:", req.body) // FIX: sale vacío
-  let hayArchivo = Boolean(req.body.file) ?? false // si en el request hay file, es true. Si no hay, es false.
   // IDEA: colocar validaciones del objeto...
   Post.create(nuevoPost).then(post => {
-    let mensaje = {}
-    if(hayArchivo){
-      upload.single('file'), function(req, res) {
-        const filename = req.body.file.filename;
-        const file = req.body.file;
-      
-        mensaje = {'mensaje': 'Se ha subido el archivo: ' + file.filename}
-
-        console.group("multer")
-        console.log("filename:",filename);
-        console.log("file:", file);
-        console.log(mensaje);
-        console.groupEnd()
-        
-      }
-    }
-    if(!hayArchivo){
-      console.log(post)
-    }
-    res.status(201).json(hayArchivo ? {post, mensaje} : post)
+    res.status(201).json(post)
   })
 });
 // Endpoint UPDATE para editar post

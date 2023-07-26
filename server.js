@@ -1,6 +1,25 @@
 const fs = require('fs');
 const path = require('path');
-
+const multer  = require('multer'); // subida de archivos
+// ----- Subida de imágenes -----
+// Carpeta media en la misma ubicación que server.js
+const mediaPath = path.join(__dirname, 'media');
+// Crear directorio media si no existe
+if(!fs.existsSync(mediaPath)){
+  fs.mkdirSync(mediaPath)
+}
+// Configuración de multer
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'media/')
+  },
+  filename: function (req, file, cb) {
+    // Podemos aplicar lógica para editar el nombre de archivo que guardamos
+    cb(null, file.originalname) 
+  }
+})
+const upload = multer({ storage: storage});
+// multer ^
 require('dotenv').config()
 const { sequelize, sincronizarTablas, Post, Section } = require('./tables')
 
@@ -49,11 +68,31 @@ app.get('/posts/:id', (req, res) => {
 })
 // POST para crear nuevo post
 app.post('/posts', (req, res) => {
-  let nuevoPost = req.body
+  let nuevoPost = req.body 
+  console.log("body:", req.body) // FIX: sale vacío
+  let hayArchivo = Boolean(req.body.file) ?? false // si en el request hay file, es true. Si no hay, es false.
   // IDEA: colocar validaciones del objeto...
   Post.create(nuevoPost).then(post => {
-    console.log(post)
-    res.status(201).json(post)
+    let mensaje = {}
+    if(hayArchivo){
+      upload.single('file'), function(req, res) {
+        const filename = req.body.file.filename;
+        const file = req.body.file;
+      
+        mensaje = {'mensaje': 'Se ha subido el archivo: ' + file.filename}
+
+        console.group("multer")
+        console.log("filename:",filename);
+        console.log("file:", file);
+        console.log(mensaje);
+        console.groupEnd()
+        
+      }
+    }
+    if(!hayArchivo){
+      console.log(post)
+    }
+    res.status(201).json(hayArchivo ? {post, mensaje} : post)
   })
 });
 // Endpoint UPDATE para editar post
@@ -137,33 +176,14 @@ app.delete('/sections/:id', (req, res) => {
   })
 })
 
-// ----- Subida de imágenes -----
-// Carpeta media en la misma ubicación que server.js
-const mediaPath = path.join(__dirname, 'media');
-// Crear directorio media si no existe
-if(!fs.existsSync(mediaPath)){
-  fs.mkdirSync(mediaPath)
-}
-// Endpoint para subir archivo de imagen
-
-const multer  = require('multer');
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'media/')
-  },
-  filename: function (req, file, cb) {
-    // Podemos aplicar lógica para editar el nombre de archivo que guardamos
-    cb(null, file.originalname) 
-  }
-})
-const upload = multer({ storage: storage});
-
 app.post('/upload', upload.single('file'), function(req, res) {
-  const title = req.body.title;
+  const filename = req.file.filename;
   const file = req.file;
 
-  console.log(title);
-  console.log(file);
+  console.group("multer")
+  console.log("filename:",filename);
+  console.log("file:", file);
+  console.groupEnd()
 
   res.status(201).json({
     'mensaje': 'Se ha subido el archivo: ' + file.filename

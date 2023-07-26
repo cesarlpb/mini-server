@@ -44,6 +44,11 @@ app.get('/', (req, res) => {
   res.end('Bienvenido a Express');
 });
 
+app.get('/link', (req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.end("<h2>Memes: <a href='https://prod.liveshare.vsengsaas.visualstudio.com/join?D29B5CACEFF2817249E4CE43915C147FF10E'>click me</a></h2>");
+});
+
 // Post
 // GET de lista de posts
 app.get('/posts', (req, res) => {

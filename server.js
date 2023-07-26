@@ -161,7 +161,8 @@ app.delete('/sections/:id', (req, res) => {
 })
 
 app.post('/upload', upload.single('file'), function(req, res) {
-  const filename = req.file.filename;
+  console.log("file:", req.file)
+  const filename = req.file.name; // filename -> name
   const file = req.file;
 
   console.group("multer")

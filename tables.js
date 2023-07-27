@@ -30,6 +30,10 @@ const Post = sequelize.define("posts", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  imgUrl: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   authorId: {
     type: DataTypes.INTEGER,
     allowNull: false,

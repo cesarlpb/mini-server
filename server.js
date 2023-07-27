@@ -1,8 +1,27 @@
 const fs = require('fs');
 const path = require('path');
 const multer  = require('multer'); // subida de archivos
+
+// Aplicación de express
+const express = require('express');
+const app = express()
+
+// Configuración
+app.use('/static', express.static('media'));
+// Imagen de ejemplo:
+// https://79.143.92.203:3000/static/meme-sql2.jpg
+
+// SSL
+const https = require('https');
+
+// Lee el certificado y la clave privada
+const privateKey = fs.readFileSync('.keys/server.key', 'utf8');
+const certificate = fs.readFileSync('.keys/server.crt', 'utf8');
+
+const credentials = { key: privateKey, cert: certificate }
+
 // ----- Subida de imágenes -----
-// Carpeta media en la misma ubicación que server.js
+// Carpeta "media" en la misma ubicación que "server.js"
 const mediaPath = path.join(__dirname, 'media');
 // Crear directorio media si no existe
 if(!fs.existsSync(mediaPath)){
@@ -22,10 +41,6 @@ const upload = multer({ storage: storage});
 // multer ^
 require('dotenv').config()
 const { sequelize, sincronizarTablas, Post, Section } = require('./tables')
-
-// Aplicación de express
-const express = require('express');
-const app = express()
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -179,7 +194,16 @@ app.post('/upload', upload.single('file'), function(req, res) {
     'mensaje': 'Se ha subido el archivo: ' + file.filename
   });
 });
+const IP = "79.143.92.203";
 const PORT = 3000
-app.listen(PORT, () => {
-  console.log("Servidor en ejecución en http://localhost:" + PORT)}
-);
+// app.listen(PORT, () => {
+//   console.log("Servidor en ejecución en http://localhost:" + PORT)}
+// );
+
+// Configura la aplicación para utilizar HTTPS
+const httpsServer = https.createServer(credentials, app);
+
+// Inicia el servidor HTTPS
+httpsServer.listen(PORT, '0.0.0.0', () => {
+  console.log("Servidor en ejecución en http://" + IP + ":" + PORT);
+});
